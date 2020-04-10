@@ -1,0 +1,16 @@
+---
+- name: 'Windows Updates Playbook'
+  gather_facts: false
+  tasks:
+    - name: rolling Windows Updates
+      win_updates:
+      # category_names: ["CriticalUpdates", "SecurityUpdates", "UpdateRollups"]
+        category_names: 
+          - SecurityUpdates
+          - CriticalUpdates
+          - UpdateRollups
+      register: win_updates_results
+      failed_when:
+        - win_updates_result.failed is defined
+        - win_updates_result.failed
+        - not win_updates_reboot
