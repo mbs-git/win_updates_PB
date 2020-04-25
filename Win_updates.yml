@@ -2,7 +2,6 @@
 #Windows update Playbook
 - name: Run Windows updates
   hosts: all
-  ansible_connection: winrm
 
   tasks:
     win_updates:
