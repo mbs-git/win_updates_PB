@@ -10,12 +10,4 @@
         - DefinitionUpdates
         - SecurityUpddates
         - UpdateRollups
-    register:result
 
-    #display restult
-    -debug:
-        var:result
-    
-    # to Reboot or not to Reboot how poetic
-    -win_reboot:
-    when: result.reboot_required
