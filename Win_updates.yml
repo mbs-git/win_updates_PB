@@ -1,0 +1,22 @@
+---
+#Windows update Playbook
+- name: Run Windows updates
+  hosts: all
+  ansible_connection: winrm
+
+  tasks:
+    win_updates:
+        category_name:
+        - CriticalUpdates
+        - DefinitionUpdates
+        - SecurityUpddates
+        - UpdateRollups
+    register:result
+
+    #display restult
+    -debug:
+        var:result
+    
+    # to Reboot or not to Reboot how poetic
+    -win_reboot:
+    when: result.reboot_required
